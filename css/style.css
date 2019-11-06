@@ -1,0 +1,27 @@
+html {
+    background-image: url('../images/background.png');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover;
+}
+p {
+    text-align: center;
+    color: red;
+    font-size: 30px;
+}
+div {
+    position:absolute; 
+    left: 0px;
+    bottom:0px;
+    width: 100%;
+    text-align: center;
+ }
+ #zombie {
+    position:fixed; 
+    top: 20px;
+    left: 50px;
+    height: 300px;
+    width: 400px
+ }
+  
