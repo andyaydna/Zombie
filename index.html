@@ -2,62 +2,60 @@
 <html lang="eng">
         <head>
                 <title>Zombie Hunter</title>
-                <link rel="stylesheet" type="text/css" href="css/style.css">
+                <link rel="stylesheet" type="text/css" href="css/style.css">                    <!--link to external css-->
         </head>
 
         <body onload="zombie()">
 
-                <img src="images/zombie_head.png" onclick="exploding_zombie()" id="zombie"> 
+                <img src="images/zombie_head.png" onclick="exploding_zombie()" id="zombie">     <!--main zombie picture - calls exploding_zombie() function-->
 
-                <audio id="gun" src="src/gun.mp3" ></audio>
+                <audio id="gun" src="src/gun.mp3" ></audio>                                     <!--gun sound effect-->
 
-                <p>Number of Zombies Killed:</p>
-                <p id="kills">0</p>
+                <p>Number of Zombies Killed:</p>                                                
+                <p id="kills">0</p>                                                             <!--display how many zombies killed-->
 
 
-                <div><button onclick="game_over()">End Game</button></div>
+                <div><button onclick="game_over()">End Game</button></div>                      <!--button that ends the game - calls game_over() function-->
 
         <script>
-                function zombie() 
+
+                let count = 0                                                                   //counts score//
+                
+                //document.getElementById("zombies").addEventListener("click", exploding_zombie)   
+                
+                function zombie()                                                               //FUNCTION - calls zombie_head and gives it JavaScript instructions// 
                 {
-                        picture = document.getElementById("zombie");
-                        setInterval(change_back, 2000);
+                        picture = document.getElementById("zombie");                                    //calls zombie_head//
+                        setInterval(move, 2000);                                                        //calls move() every 2 sec//
                 }
 
-                function exploding_zombie() 
+                function exploding_zombie()                                                     //FUNCTION - turns zombie_head to exploding_zombie onclick//
                 {    
+                        //document.getElementById("zombies").removeEventListener("click", exploding_zombie)
                         let audio = document.getElementById("gun");
-                        audio.play();
-                        document.getElementById("kills").innerHTML = count ();
-                        document.getElementById("zombie").src="images/exploding_zombie.png";
-                        setTimeout(change_back, 2000);
+                        audio.play();                                                                   //plays gunshot audio onclick//
+                        count += 1
+                        document.getElementById("kills").innerHTML = count                              //counts how many zombies user killed//
+                        document.getElementById("zombie").src="images/exploding_zombie.png";            //changes zombie_head to exploding_zombie onclick//                                               
+                        document.getElementById("zombie").style.position = "absolute"; 
                 }
-                document.getElementById("zombie").onclick = exploding_zombie
-                
-                function change_back()
+                document.getElementById("zombie").onclick = exploding_zombie                            //changes zombie_head to exploding_zombie onclick// 
+
+
+                function move()                                                                 //FUNCTION - moves zombie//
                 {
-                        document.getElementById("zombie").src = "images/zombie_head.png"
-                        document.getElementById("zombie").style.position = "absolute";
+                        document.getElementById("zombie").src = "images/zombie_head.png"                //new pic of zombie_head is displayed when moved//
+                        document.getElementById("zombie").style.position = "absolute";     
+                        //document.getElementById("zombies").addEventListener("click", exploding_zombie)         
                         //left -> window width(1536px) - picture width(400px) = 1136px
                         picture.style.left = Math.round(Math.random() * 1136) + "px";
                         //top -> window height=(722px) - picture height(300px) = 422px
-                        picture.style.top = Math.round(Math.random() * 422) + "px";
+                        picture.style.top = Math.round(Math.random() * 422) + "px";     
                 }
 
-                let count =
-                (
-                        function () 
-                        {
-                                let counter = 0;
-                                return function () 
-                                {
-                                        return counter += 1;
-                                }
-                })();
-
-                function game_over()
+                function game_over()                                                            //FUNCTION - resets game//
                 {
-                        location.reload();
+                        location.reload();                                                              //reloads page//
                 }
 
                 // let width = window.innerWidth
