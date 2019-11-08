@@ -18,10 +18,11 @@ div {
     text-align: center;
  }
  #zombie {
-    position:fixed; 
+    position:absolute; 
     top: 20px;
     left: 50px;
+    right: 50px;
+    bottom: 20px;
     height: 300px;
     width: 400px
  }
-  
