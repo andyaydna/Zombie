@@ -1,23 +1,23 @@
 html {
-    background-image: url('../images/background.png');
-    height: 100%;
+    background-image: url('../images/background.png');      /*links to background image - span entire web page*/
+    height: 100%;                                           
     background-position: center;
     background-repeat: no-repeat; 
     background-size: cover;
 }
-p {
+p {                                                         /*controls p tag items - center, red, 30px size*/
     text-align: center;
     color: red;
     font-size: 30px;
 }
-div {
+div {                                                       /*controls div button - bottom center*/
     position:absolute; 
     left: 0px;
     bottom:0px;
     width: 100%;
     text-align: center;
  }
- #zombie {
+ #zombie {                                                  /*controls zombie - size: height-300px width-400px*/
     position:absolute; 
     top: 20px;
     left: 50px;
