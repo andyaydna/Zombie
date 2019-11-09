@@ -2,66 +2,62 @@
 <html lang="eng">
         <head>
                 <title>Zombie Hunter</title>
-                <link rel="stylesheet" type="text/css" href="css/style.css">                    <!--link to external css-->
+                <link rel="stylesheet" type="text/css" href="css/style.css">                            <!--link to external css-->
         </head>
-
         <body onload="zombie()">
 
-                <img src="images/zombie_head.png" id="zombie">     <!--main zombie picture - calls exploding_zombie() function-->
+                <img src="images/zombie_head.png" id="zombie">                                                  <!--main zombie picture - calls exploding_zombie() function-->
 
-                <audio id="gun" src="src/gun.mp3" ></audio>                                     <!--gun sound effect-->
+                <audio id="gun" src="src/gun.mp3" ></audio>                                                     <!--gun sound effect-->
 
                 <p>Number of Zombies Killed:</p>                                                
-                <p id="kills">0</p>                                                             <!--display how many zombies killed-->
+                <p id="kills">0</p>                                                                             <!--display how many zombies killed-->
 
 
-                <div><button onclick="game_over()">End Game</button></div>                      <!--button that ends the game - calls game_over() function-->
+                <div><button onclick="game_over()">End Game</button></div>                                      <!--button that ends the game - calls game_over() function-->
 
         <script>
 
-                let count = 0                                                                   //counts score//
+                let count = 0                                                                                   //counts score
                 
-                
-                
-                function zombie()                                                               //FUNCTION - calls zombie_head and gives it JavaScript instructions// 
+                function zombie()                                                                       //FUNCTION - calls zombie_head and gives it JavaScript instructions
                 {
-                        picture = document.getElementById("zombie");                                    //calls zombie_head//
-                        setInterval(move, 2000);                                                        //calls move() every 2 sec//
+                        picture = document.getElementById("zombie");                                            //calls zombie_head
+                        setInterval(move, 2000);                                                                //calls move() every 2 sec
                 }
 
-                function exploding_zombie()                                                     //FUNCTION - turns zombie_head to exploding_zombie onclick//
+                function exploding_zombie()                                                             //FUNCTION - turns zombie_head to exploding_zombie onclick
                 {    
-                        document.getElementById("zombie").removeEventListener("click", exploding_zombie)
+                        document.getElementById("zombie").removeEventListener("click", exploding_zombie)        //prevent score count increase after zombie is already dead
                         let audio = document.getElementById("gun");
-                        audio.play();                                                                   //plays gunshot audio onclick//
+                        audio.play();                                                                           //plays gunshot audio onclick
                         count += 1
-                        document.getElementById("kills").innerHTML = count                              //counts how many zombies user killed//
-                        document.getElementById("zombie").src="images/exploding_zombie.png";            //changes zombie_head to exploding_zombie onclick//                                               
+                        document.getElementById("kills").innerHTML = count                                      //counts how many zombies user killed
+                        document.getElementById("zombie").src="images/exploding_zombie.png";                    //changes zombie_head to exploding_zombie onclick                                              
                         document.getElementById("zombie").style.position = "absolute"; 
-
-                        setTimeout(click_again, 2000)
+                        setTimeout(click_again, 2000)                                                           //prevent score count for 2 sec
                 }
-                document.getElementById("zombie").addEventListener("click", exploding_zombie)                            //changes zombie_head to exploding_zombie onclick// 
+                document.getElementById("zombie").addEventListener("click", exploding_zombie)                   //changes zombie_head to exploding_zombie onclick
 
 
-                function move()                                                                 //FUNCTION - moves zombie//
+                function move()                                                                         //FUNCTION - moves zombie//
                 {
-                        document.getElementById("zombie").src = "images/zombie_head.png"                //new pic of zombie_head is displayed when moved//
+                        document.getElementById("zombie").src = "images/zombie_head.png"                        //new pic of zombie_head is displayed when moved//
                         document.getElementById("zombie").style.position = "absolute";           
                         //left -> window width(1536px) - picture width(400px) = 1136px
-                        picture.style.left = Math.round(Math.random() * 1136) + "px";
+                        picture.style.left = Math.round(Math.random() * 1136) + "px";                           //y-axis = generate random number (minus window width with picture width to prevent zombie from escaping window)
                         //top -> window height=(722px) - picture height(300px) = 422px
-                        picture.style.top = Math.round(Math.random() * 422) + "px";     
+                        picture.style.top = Math.round(Math.random() * 422) + "px";                             //x-axis = generate random number (minus window height with picture height to prevent zombie from escaping window)     
                 }
 
-                function click_again()
+                function click_again()                                                                  //FUNCTION - adds back function that allows players to click again
                 {
-                        document.getElementById("zombie").addEventListener("click", exploding_zombie)
+                        document.getElementById("zombie").addEventListener("click", exploding_zombie)           //add back ability for players to click zombie again
                 }
 
-                function game_over()                                                            //FUNCTION - resets game//
+                function game_over()                                                                    //FUNCTION - resets game//
                 {
-                        location.reload();                                                              //reloads page//
+                        location.reload();                                                                      //reloads page//
                 }
 
                 // let width = window.innerWidth
